@@ -40,6 +40,10 @@ jobs:
             cp -r "$(dirname "$I")"/. app/src/main/assets/; rm -rf upload site site.zip
           fi
           if [ -d upload ]; then mkdir -p app/src/main/assets; cat upload/p* | gunzip > app/src/main/assets/index.html; [ "$(stat -c %s app/src/main/assets/index.html)" = "$(cat upload/size.txt)" ] || { echo SIZE MISMATCH; exit 1; }; rm -rf upload; fi
+      - name: Firebase config
+        env:
+          GSJ: ${{ secrets.GSJ_B64 }}
+        run: echo "$GSJ" | base64 -d > app/google-services.json
       - run: gradle assembleRelease --parallel --build-cache
       - name: Publish APK
         env:

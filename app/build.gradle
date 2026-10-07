@@ -1,4 +1,4 @@
-plugins { id 'com.android.application' }
+plugins { id 'com.android.application'; id 'com.google.gms.google-services' }
 android {
     namespace 'com.anshify.myapp'
     compileSdk 34
@@ -6,8 +6,8 @@ android {
         applicationId 'com.anshify.myapp'
         minSdk 21
         targetSdk 34
-        versionCode 1
-        versionName '1.0.1'
+        versionCode 2
+        versionName '1.0.2'
     }
     androidResources {
         noCompress 'html'
@@ -28,3 +28,4 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 }
+dependencies { implementation platform('com.google.firebase:firebase-bom:33.7.0'); implementation 'com.google.firebase:firebase-messaging' }
